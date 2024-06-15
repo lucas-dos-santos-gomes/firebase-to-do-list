@@ -2,8 +2,8 @@ import { useState } from "react";
 import { auth } from "../../contexts/auth";
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('lucas.gomes247@etec.sp.gov.br');
+  const [password, setPassword] = useState('1234567890');
   const [error, setError] = useState(null);
 
   const handleAuth = async(e) => {

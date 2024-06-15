@@ -3,10 +3,12 @@ import { auth } from "../../contexts/auth";
 
 export default function Tasks() {
   const [seconds, setSeconds] = useState(5);
+  const [user, setUser] = useState(auth.currentUser);
 
-  const handleLogout = async() => {
+  const handleLogout = () => {
+    setUser(auth.currentUser);
     if(seconds > 0) {
-      await new Promise(setTimeout(() => setSeconds(seconds-1), 1000));
+      setTimeout(() => setSeconds(seconds-1), 1000);
     } else {
       auth.signOut();
     }
@@ -16,7 +18,11 @@ export default function Tasks() {
     handleLogout();
   });
 
+
   return (
-    <>Tasks {seconds}</>
+    <>
+      <h1>Seja bem vindo{user.displayName ? ', ' + user.displayName : '!'}</h1>
+      Tasks {seconds}
+    </>
   );
 }
