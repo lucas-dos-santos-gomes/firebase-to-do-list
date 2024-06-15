@@ -7,9 +7,13 @@ export default function Login() {
   
   return (
     <>
-      {component ? <Sigin /> : <Signup />}
-      <br />
-      <button onClick={() => setComponent(!component)}>Ir para página de {component ? 'cadastro' : 'login'}</button>
+      <main>
+        <img src="/profile-dark.png" alt="" />
+        <h1>{component ? 'Entre com sua conta' : 'Cadastre-se'}</h1>
+        {component ? <Sigin /> : <Signup />}
+        <br />
+        <button onClick={() => setComponent(!component)}>Ir para página de {component ? 'cadastro' : 'login'}</button>
+      </main>
     </>
   );
 }

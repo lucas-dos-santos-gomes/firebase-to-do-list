@@ -40,17 +40,13 @@ export default function Sigin() {
   }, [error]);
 
   return (
-    <div>
-      <main>
-        <img src="/profile-dark.png" alt="" />
-        <h1>Entre com sua conta</h1>
-        <form onSubmit={handleAuth}>
-          <input ref={inputRef} id="email" type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} maxLength={50} required />
-          <input id="password" type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} minLength={8} maxLength={24} onFocus={handleError} required />
-          <button type="submit" disabled={loading && true} >{loading ? 'Entrando...' : 'Entrar'}</button>
-        </form>
-        {error && <p>{error}</p>}
-      </main>
-    </div>
+    <>
+      <form onSubmit={handleAuth}>
+        <input ref={inputRef} id="email" type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} maxLength={50} required />
+        <input id="password" type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} minLength={8} maxLength={24} onFocus={handleError} required />
+        <button type="submit" disabled={loading && true} >{loading ? 'Entrando...' : 'Entrar'}</button>
+      </form>
+      {error && <p>{error}</p>}
+    </>
   );
 }
