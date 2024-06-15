@@ -9,7 +9,7 @@ export default function Login() {
     <>
       {component ? <Sigin /> : <Signup />}
       <br />
-      <button onClick={() => setComponent(!component)}>{component ? 'Ir para página de cadastro' : 'Ir pra página de login'}</button>
+      <button onClick={() => setComponent(!component)}>Ir para página de {component ? 'cadastro' : 'login'}</button>
     </>
   );
 }
