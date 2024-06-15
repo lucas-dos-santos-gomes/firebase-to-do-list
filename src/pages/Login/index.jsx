@@ -1,32 +1,15 @@
 import { useState } from "react";
-import { auth } from "../../contexts/auth";
+import Sigin from "./components/Signin";
+import Signup from "./components/Signup";
 
 export default function Login() {
-  const [email, setEmail] = useState('lucas.gomes247@etec.sp.gov.br');
-  const [password, setPassword] = useState('1234567890');
-  const [error, setError] = useState(null);
-
-  const handleAuth = async(e) => {
-    e.preventDefault();
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-    } catch(err) {
-      setError(err.message);
-    }
-};
-
+  const [component, setComponent] = useState(true);
+  
   return (
-    <div>
-      <main>
-        <img src="" alt="" />
-        <h1>Entre com sua conta</h1>
-        <form onSubmit={handleAuth}>
-          <input id="email" type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} maxLength={50} required />
-          <input id="password" type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} minLength={8} maxLength={24} required />
-          <button type="submit">Entrar</button>
-        </form>
-        {error && <p>{error}</p>}
-      </main>
-    </div>
+    <>
+      {component ? <Sigin /> : <Signup />}
+      <br />
+      <button onClick={() => setComponent(!component)}>{component ? 'Ir para página de cadastro' : 'Ir pra página de login'}</button>
+    </>
   );
 }
