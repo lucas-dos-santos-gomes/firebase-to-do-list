@@ -42,7 +42,7 @@ export default function Sigin() {
   return (
     <div>
       <main>
-        <img src="" alt="" />
+        <img src="/profile-dark.png" alt="" />
         <h1>Entre com sua conta</h1>
         <form onSubmit={handleAuth}>
           <input ref={inputRef} id="email" type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} maxLength={50} required />
