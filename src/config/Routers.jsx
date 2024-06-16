@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { auth } from "../contexts/auth";
+import { auth } from "../contexts/firebase";
 
 import Login from "../pages/login";
 import Tasks from "../pages/tasks";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { auth } from "../../contexts/auth";
+import { auth } from "../../contexts/firebase";
 
 export default function Tasks() {
   const [seconds, setSeconds] = useState(5);

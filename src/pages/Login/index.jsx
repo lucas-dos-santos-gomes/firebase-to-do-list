@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Sigin from "./components/Signin";
 import Signup from "./components/Signup";
-import { googleLogin } from "../../contexts/auth";
+import { googleLogin } from "../../contexts/firebase";
 
 export default function Login() {
   const [component, setComponent] = useState(true);

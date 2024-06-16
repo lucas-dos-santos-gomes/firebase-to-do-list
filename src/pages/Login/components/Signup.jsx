@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { auth } from "../../../contexts/auth";
+import { auth } from "../../../contexts/firebase";
 import { authError } from "../../../functions";
 
 export default function Signup() {

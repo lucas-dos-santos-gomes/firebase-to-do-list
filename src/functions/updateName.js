@@ -1,4 +1,4 @@
-import { auth } from "../contexts/auth";
+import { auth } from "../contexts/firebase";
 
 export const updateName = (name) => {
   auth.currentUser.updateProfile({
