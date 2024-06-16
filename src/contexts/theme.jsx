@@ -11,7 +11,6 @@ export const ThemeProvider = ({ children }) => {
     setTheme(mediaQuery.matches? 'dark' : 'light');
 
     const handleThemeChange = (e) => {
-      console.log(e.matches);
       setTheme(e.matches? 'dark' : 'light');
     };
 

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { googleLogin } from "../../contexts/firebase";
+import { ThemeContext } from "../../contexts/theme";
 import Sigin from "./components/Signin";
 import Signup from "./components/Signup";
-import { googleLogin } from "../../contexts/firebase";
 
 export default function Login() {
+  const { theme } = useContext(ThemeContext);
   const [component, setComponent] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,7 +21,7 @@ export default function Login() {
   return (
     <>
       <main>
-        <img src="/profile-dark.png" alt="" />
+        <img src={`/profile-${theme}.png`} alt="" />
         <h1>{component ? 'Entre com sua conta' : 'Cadastre-se'}</h1>
         {component ? <Sigin /> : <Signup />}
         <br />
