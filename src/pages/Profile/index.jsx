@@ -15,6 +15,7 @@ export default function Profile() {
 
   const handleLogout = async() => {
     setLoading(true);
+    user.refreshToken;
     await auth.signOut();
     setLoading(null);
   }
@@ -27,6 +28,7 @@ export default function Profile() {
   return (
     <>
       <h1>Seja bem vindo{user.displayName ? ', ' + user.displayName : '!'}</h1>
+      <h2>Seu e-mail: {user.email}</h2>
       <p>Profile {seconds}</p>
       <button type="submit" onClick={handleLogout} disabled={loading}>{loading ? 'Deslogando...' : 'Deslogar'}</button>
     </>

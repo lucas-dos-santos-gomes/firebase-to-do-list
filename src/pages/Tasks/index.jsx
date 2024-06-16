@@ -10,6 +10,18 @@ function App() {
   const [newTask, setNewTask] = useState('');
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    const expiresAt = localStorage.getItem('expiresAt');
+    if(token && expiresAt) {
+      const now = new Date().getTime();
+      if(now > expiresAt) {
+        // Token expirado
+        localStorage.removeItem('token');
+        localStorage.removeItem('expiresAt');
+        auth.signOut();
+      }
+    }
+
     auth.onAuthStateChanged((user) => {
       if(user) {
         setUser(user);
@@ -25,16 +37,16 @@ function App() {
   }, []);
 
   const handleAddTask = async() => {
-    setLoading(true);
     if(user) {
+      setLoading(true);
       const tasksRef = db.collection(`users/${user.uid}/tasks`);
       await tasksRef.add({
         title: newTask,
         completed: false,
       });
       setNewTask('');
+      setLoading(null);
     }
-    setLoading(null);
   };
 
   const handleToggleCompleted = (task) => {
@@ -90,6 +102,8 @@ function App() {
           <button onClick={handleAddTask} disabled={loading}>{loading ? 'Adicionando...' : 'Adicionar'}</button>
           <br /><br />
           <button onClick={deleteAllTasks}>Deletar todas as tarefas</button>
+          <br />
+          <Link to="/profile">Perfil</Link>
         </div>
       ) : (
         <>

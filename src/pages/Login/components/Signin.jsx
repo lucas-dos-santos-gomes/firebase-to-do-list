@@ -15,7 +15,12 @@ export default function Sigin() {
     e.preventDefault();
     try {
       setLoading(true);
-      await auth.signInWithEmailAndPassword(email.trim(), password);
+      await auth.signInWithEmailAndPassword(email.trim(), password).then(res => {
+        res.user.getIdToken().then(token => {
+          localStorage.setItem('token', token);
+          localStorage.setItem('expiresAt', new Date().getTime() + 15000);
+        });
+      });
     } catch(err) {
       setError(authError(err.message, true));
       setEmail('');
