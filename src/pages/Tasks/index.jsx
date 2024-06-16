@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { auth, db } from '../../contexts/firebase';
+import { Link } from 'react-router-dom';
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const [user, setUser] = useState(auth.currentUser);
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
 
@@ -10,10 +12,9 @@ function App() {
     auth.onAuthStateChanged((user) => {
       if(user) {
         setUser(user);
-        console.log(user);
         const tasksRef = db.collection(`users/${user.uid}/tasks`);
         tasksRef.onSnapshot((snapshot) => {
-          setTasks(snapshot.docs.map((doc) => ({ id: doc.id,...doc.data() })));
+          setTasks(snapshot.docs.map((doc) => ({ id: doc.id,...doc.data()})));
         });
       } else {
         setUser(null);
@@ -22,19 +23,23 @@ function App() {
     });
   }, []);
 
-  const handleAddTask = () => {
-    if (user) {
+  useEffect(() => console.log(tasks), [tasks]);
+
+  const handleAddTask = async() => {
+    setLoading(true);
+    if(user) {
       const tasksRef = db.collection(`users/${user.uid}/tasks`);
-      tasksRef.add({
+      await tasksRef.add({
         title: newTask,
         completed: false,
       });
       setNewTask('');
     }
+    setLoading(null);
   };
 
   const handleToggleCompleted = (task) => {
-    if (user) {
+    if(user) {
       const taskRef = db.collection(`users/${user.uid}/tasks`).doc(task.id);
       taskRef.update({
         completed:!task.completed,
@@ -42,16 +47,23 @@ function App() {
     }
   };
 
+  // const handleEditTask = (task) => {
+  //   if(user) {
+  //     const taskRef = db.collection(`users/${user.uid}/tasks`).doc(task.id);
+  //     taskRef.update
+  //   }
+  // }
+
   const handleDeleteTask = (task) => {
-    if (user) {
+    if(user) {
       const taskRef = db.collection(`users/${user.uid}/tasks`).doc(task.id);
       taskRef.delete();
     }
   };
 
   return (
-    <div>
-      {user? (
+    <>
+      {user ? (
         <div>
           <h1>Lista de Tarefas</h1>
           <ul>
@@ -65,6 +77,7 @@ function App() {
                 <span style={{ textDecoration: task.completed? 'line-through' : 'none' }}>
                   {task.title}
                 </span>
+                {/* <button onClick={() => handleEditTask(task)}>Editar</button> */}
                 <button onClick={() => handleDeleteTask(task)}>Excluir</button>
               </li>
             ))}
@@ -75,12 +88,15 @@ function App() {
             onChange={(e) => setNewTask(e.target.value)}
             placeholder="Adicionar tarefa"
           />
-          <button onClick={handleAddTask}>Adicionar</button>
+          <button onClick={handleAddTask} disabled={loading}>{loading ? 'Adicionando...' : 'Adicionar'}</button>
         </div>
       ) : (
-        <p>Faça login para acessar sua lista de tarefas</p>
+        <>
+          <p>Faça login para acessar sua lista de tarefas</p>
+          <Link to="/">Login</Link>
+        </>
       )}
-    </div>
+    </>
   );
 }
 
