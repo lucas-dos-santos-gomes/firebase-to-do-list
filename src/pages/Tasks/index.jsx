@@ -1,10 +1,5 @@
-import { useState, useEffect } from 'eact';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/firestore';
-
-const auth = firebase.auth();
-const db = firebase.firestore();
+import { useState, useEffect } from 'react';
+import { auth, db } from '../../contexts/firebase';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -13,8 +8,9 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if (user) {
+      if(user) {
         setUser(user);
+        console.log(user);
         const tasksRef = db.collection(`users/${user.uid}/tasks`);
         tasksRef.onSnapshot((snapshot) => {
           setTasks(snapshot.docs.map((doc) => ({ id: doc.id,...doc.data() })));

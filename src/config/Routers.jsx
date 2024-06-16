@@ -8,18 +8,18 @@ import Tasks from "../pages/tasks";
 import Profile from "../pages/profile";
 
 export default function Routers() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => { 
     return auth.onAuthStateChanged(user => setUser(user));
   }, []);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={user ? <Tasks /> : <Login />} />
-        <Route path="/tasks" element={<Navigate to="/" />} />
-        <Route path="/profile" element={user ? <Profile /> : <Navigate to="/" />} />
+        <Route exact path="/" element={user ? <Navigate to="tasks" /> : <Login />} />
+        <Route path="/tasks" element={user ? <Tasks /> : user ?? <Navigate to="/" />} />
+        <Route path="/profile" element={user ? <Profile /> : user ?? <Navigate to="/" />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
