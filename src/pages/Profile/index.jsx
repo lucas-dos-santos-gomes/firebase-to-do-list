@@ -15,7 +15,6 @@ export default function Profile() {
 
   const handleLogout = async() => {
     setLoading(true);
-    user.refreshToken;
     await auth.signOut();
     setLoading(null);
   }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { auth, db } from '../../contexts/firebase';
 import { Link } from 'react-router-dom';
-import { authTimeout, deleteAllTasks } from '../../functions';
+import { deleteAllTasks } from '../../functions';
 
 function App() {
   const [loading, setLoading] = useState(null);
@@ -22,7 +22,6 @@ function App() {
         setTasks([]);
       }
     });
-    authTimeout();
   }, []);
 
   const handleAddTask = async() => {
