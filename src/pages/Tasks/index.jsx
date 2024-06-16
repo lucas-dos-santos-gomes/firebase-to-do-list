@@ -3,26 +3,32 @@ import { auth } from "../../contexts/auth";
 
 export default function Tasks() {
   const [seconds, setSeconds] = useState(5);
+  const [loading, setLoading] = useState(null);
   const [user, setUser] = useState(auth.currentUser);
 
-  const handleLogout = () => {
+  const handleCount = () => {
     setUser(auth.currentUser);
     if(seconds > 0) {
       setTimeout(() => setSeconds(seconds-1), 1000);
-    } else {
-      auth.signOut();
     }
   }
 
+  const handleLogout = async() => {
+    setLoading(true);
+    await auth.signOut();
+    setLoading(null);
+  }
+
   useEffect(() => {
-    handleLogout();
+    handleCount();
   });
 
 
   return (
     <>
       <h1>Seja bem vindo{user.displayName ? ', ' + user.displayName : '!'}</h1>
-      Tasks {seconds}
+      <p>Tasks {seconds}</p>
+      <button type="submit" onClick={handleLogout} disabled={loading}>{loading ? 'Deslogando...' : 'Deslogar'}</button>
     </>
   );
 }

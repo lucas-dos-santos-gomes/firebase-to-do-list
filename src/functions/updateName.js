@@ -1,11 +1,12 @@
 import { auth } from "../contexts/auth";
 
-export const updateName = () => {
+export const updateName = (name) => {
   auth.currentUser.updateProfile({
-    displayName: 'Lucas dos Santos Gomes',
+    displayName: name,
   }).then(() => {
     console.log('Nome de usuário atualizado com sucesso');
-  }).catch((error) => {
-    console.log('Erro ao atualizar o nome do usuário', error);
+  }).catch((err) => {
+    console.log('Erro ao atualizar o nome do usuário.');
+    console.error(err);
   });
 }

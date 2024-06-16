@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { auth } from "../../../contexts/auth";
+import { authError } from "../../../functions";
 
 export default function Signup() {
   const [loading, setLoading] = useState(null);
@@ -27,12 +28,7 @@ export default function Signup() {
       const user = auth.currentUser;
       await user.updateProfile({ displayName: name.trim() });
     } catch(err) {
-      console.error(err.message);
-      if(err.message.includes('(auth/email-already-in-use)')) {
-        setError(['Esse endereço de E-mail já está cadastrado.', ...error]);
-      } else {
-        setError(['Houve um problema na criação da conta. Tente novamente.', ...error]);
-      }
+      setError([authError(err.message, false), ...error]);
       resetInputs();
       inputRef.current.focus();
     } finally {

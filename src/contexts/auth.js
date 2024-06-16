@@ -17,3 +17,8 @@ if (!firebase.apps.length) {
 }
 
 export const auth = firebase.auth();
+
+export const googleLogin = async() => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  await auth.signInWithPopup(provider);
+};
