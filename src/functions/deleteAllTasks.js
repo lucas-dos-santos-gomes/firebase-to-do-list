@@ -1,10 +1,7 @@
-import { db } from "../contexts/firebase";
+import { auth, db } from "../contexts/firebase";
 
-export const deleteAllTasks = () => {
-  const tasksRef = db.collection('tasks');
-  tasksRef.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      doc.ref.delete();
-    });
-  });
+export const deleteAllTasks = async() => {
+  const tasksRef = db.collection(`users/${auth.currentUser.uid}/tasks`);
+  const allTasks = await tasksRef.get();
+  allTasks.docs.map(e => tasksRef.doc(e.id).delete());
 }

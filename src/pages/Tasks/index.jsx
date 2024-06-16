@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { auth, db } from '../../contexts/firebase';
 import { Link } from 'react-router-dom';
+import { deleteAllTasks } from '../../functions';
 
 function App() {
   const [loading, setLoading] = useState(null);
@@ -22,8 +23,6 @@ function App() {
       }
     });
   }, []);
-
-  useEffect(() => console.log(tasks), [tasks]);
 
   const handleAddTask = async() => {
     setLoading(true);
@@ -89,6 +88,8 @@ function App() {
             placeholder="Adicionar tarefa"
           />
           <button onClick={handleAddTask} disabled={loading}>{loading ? 'Adicionando...' : 'Adicionar'}</button>
+          <br /><br />
+          <button onClick={deleteAllTasks}>Deletar todas as tarefas</button>
         </div>
       ) : (
         <>
