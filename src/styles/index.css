@@ -18,6 +18,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: background-color .5s linear, color .1s linear;
 }
 
 body {
