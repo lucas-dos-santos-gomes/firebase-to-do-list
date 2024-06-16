@@ -18,7 +18,7 @@ export default function Sigin() {
       await auth.signInWithEmailAndPassword(email.trim(), password).then(res => {
         res.user.getIdToken().then(token => {
           localStorage.setItem('token', token);
-          localStorage.setItem('expiresAt', new Date().getTime() + 15000);
+          localStorage.setItem('expiresAt', new Date().getTime() + 1800000);
         });
       });
     } catch(err) {

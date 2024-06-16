@@ -11,7 +11,7 @@ export const authTimeout = () => {
       localStorage.removeItem('expiresAt');
       auth.signOut();
     } else {
-      localStorage.setItem('expiresAt', new Date().getTime() + 15000);
+      localStorage.setItem('expiresAt', new Date().getTime() + 1800000);
     }
   }
 }

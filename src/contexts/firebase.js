@@ -22,5 +22,10 @@ export const db = firebase.firestore();
 
 export const googleLogin = async() => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  await auth.signInWithPopup(provider);
+  await auth.signInWithPopup(provider).then(res => {
+    res.user.getIdToken().then(token => {
+      localStorage.setItem('token', token);
+      localStorage.setItem('expiresAt', new Date().getTime() + 1800000);
+    });
+  });
 };

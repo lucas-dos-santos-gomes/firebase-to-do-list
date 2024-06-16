@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { auth, db } from '../../contexts/firebase';
 import { Link } from 'react-router-dom';
-import { deleteAllTasks } from '../../functions';
+import { authTimeout, deleteAllTasks } from '../../functions';
 
 function App() {
   const [loading, setLoading] = useState(null);
@@ -10,18 +10,6 @@ function App() {
   const [newTask, setNewTask] = useState('');
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const expiresAt = localStorage.getItem('expiresAt');
-    if(token && expiresAt) {
-      const now = new Date().getTime();
-      if(now > expiresAt) {
-        // Token expirado
-        localStorage.removeItem('token');
-        localStorage.removeItem('expiresAt');
-        auth.signOut();
-      }
-    }
-
     auth.onAuthStateChanged((user) => {
       if(user) {
         setUser(user);
@@ -34,6 +22,7 @@ function App() {
         setTasks([]);
       }
     });
+    authTimeout();
   }, []);
 
   const handleAddTask = async() => {
