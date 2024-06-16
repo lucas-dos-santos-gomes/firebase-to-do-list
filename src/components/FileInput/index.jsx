@@ -13,10 +13,9 @@ export const FileInput = () => {
   };
 
   const handleUpload = () => {
-    const storageRef = ref(storage, `profile-pictures/${auth.currentUser.uid}`);
+    const storageRef = ref(storage, `imgs/${auth.currentUser.uid}/profile`);
     uploadBytes(storageRef, image).then((snapshot) => {
-      const url = `${snapshot.ref._service._protocol}://${snapshot.ref.storage.host}/v0/b/${snapshot.ref.bucket}/o/${snapshot.ref.fullPath.replace('/', '%2F')}?alt=media`;
-      console.log(storageRef);
+      const url = `${snapshot.ref._service._protocol}://${snapshot.ref.storage.host}/v0/b/${snapshot.ref.bucket}/o/${snapshot.ref.fullPath.replaceAll('/', '%2F')}?alt=media`;
       auth.currentUser.updateProfile({ photoURL: url });
       setImageUrl(url);
     });

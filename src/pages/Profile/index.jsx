@@ -15,7 +15,7 @@ export default function Profile() {
   return (
     <>
       <div style={{display: 'flex'}}>
-        <img style={{borderRadius: '50px'}} src={user.photoURL ?? "/profile-dark.png"} alt="Foto de perfil" />
+        <img style={{borderRadius: '50px', width: '100px'}} src={user.photoURL ?? "/profile-dark.png"} alt="Foto de perfil" />
         <FileInput />
       </div>
 
