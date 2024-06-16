@@ -1,17 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { auth } from "../../contexts/firebase";
+import { FileInput } from "../../components/FileInput";
 
 export default function Profile() {
-  const [seconds, setSeconds] = useState(5);
   const [loading, setLoading] = useState(null);
-  const [user, setUser] = useState(auth.currentUser);
-
-  const handleCount = () => {
-    setUser(auth.currentUser);
-    if(seconds > 0) {
-      setTimeout(() => setSeconds(seconds-1), 1000);
-    }
-  }
+  const [user] = useState(auth.currentUser);
 
   const handleLogout = async() => {
     setLoading(true);
@@ -19,16 +12,16 @@ export default function Profile() {
     setLoading(null);
   }
 
-  useEffect(() => {
-    handleCount();
-  });
-
-
   return (
     <>
-      <h1>Seja bem vindo{user.displayName ? ', ' + user.displayName : '!'}</h1>
+      <div style={{display: 'flex'}}>
+        <img style={{borderRadius: '50px'}} src={user.photoURL ?? "/profile-dark.png"} alt="Foto de perfil" />
+        <FileInput />
+      </div>
+
+      <h1>Seja bem vindo{user.displayName && ', ' + user.displayName}!</h1>
       <h2>Seu e-mail: {user.email}</h2>
-      <p>Profile {seconds}</p>
+      <p>Profile</p>
       <button type="submit" onClick={handleLogout} disabled={loading}>{loading ? 'Deslogando...' : 'Deslogar'}</button>
     </>
   );
