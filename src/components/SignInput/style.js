@@ -5,7 +5,7 @@ export const Container = styled.label`
   & {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 10px;
 
     padding: 15px;
     border-radius: 50px;
