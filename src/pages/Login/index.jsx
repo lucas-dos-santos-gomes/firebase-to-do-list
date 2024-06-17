@@ -23,7 +23,7 @@ export default function Login() {
   };
   
   return (
-    <S.Container theme={theme} component={component}>
+    <S.Container theme={theme} $component={component}>
       <main>
         <header>
           <span className="Sign-in" onClick={e => setComponent(e.target.className)}>
@@ -40,13 +40,13 @@ export default function Login() {
           <h1>{component === 'Sign-in' ? 'Entre com sua conta' : 'Cadastre-se'}</h1>
           {component === 'Sign-in' ? 
             (<Sigin>
-              <S.Button onClick={handleGoogleSign} theme={theme} google>
+              <S.Button onClick={handleGoogleSign} theme={theme} $google>
                 <img src="/svg/google.svg" alt="Ícone do Google" />
                 Fazer Login com Google
               </S.Button>
             </Sigin>) : 
             (<Signup>
-              <S.Button onClick={handleGoogleSign} theme={theme} google>
+              <S.Button onClick={handleGoogleSign} theme={theme} $google>
                 <img src="/svg/google.svg" alt="Ícone do Google" />
                 Fazer Login com Google
               </S.Button>

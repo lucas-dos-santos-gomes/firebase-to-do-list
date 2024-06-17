@@ -66,5 +66,5 @@ export default function Sigin({ children }) {
 }
 
 Sigin.propTypes = {
-  children: PropTypes.func.isRequired
+  children: PropTypes.object.isRequired
 };

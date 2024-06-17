@@ -19,7 +19,12 @@
   padding: 0;
   box-sizing: border-box;
   border: none;
-  transition: all .5s linear, color .1s linear, filter .2s linear;
+  transition: background .5s linear, 
+              background-color .5s linear, 
+              background-image .5s linear, 
+              color .1s linear, 
+              outline .5s linear, 
+              filter .2s linear;
 }
 
 *:disabled:hover {

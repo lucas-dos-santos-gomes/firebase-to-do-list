@@ -108,5 +108,5 @@ export default function Signup({ children }) {
 }
 
 Signup.propTypes = {
-  children: PropTypes.func.isRequired
+  children: PropTypes.object.isRequired
 };

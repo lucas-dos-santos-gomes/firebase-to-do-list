@@ -50,13 +50,13 @@ export const Container = styled.div`
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    background-color: ${({ component, theme }) => component === 'Sign-up' && themes[theme].color.secondary || component === 'Sign-in' && themes[theme].color.primary};
+    background-color: ${({ $component, theme }) => $component === 'Sign-up' && themes[theme].color.secondary || $component === 'Sign-in' && themes[theme].color.primary};
   }
   & > main > header > span:last-child {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
-    background-color: ${({ component, theme }) => component === 'Sign-in' && themes[theme].color.secondary || component === 'Sign-up' && themes[theme].color.primary};
+    background-color: ${({ $component, theme }) => $component === 'Sign-in' && themes[theme].color.secondary || $component === 'Sign-up' && themes[theme].color.primary};
   }
 
   & > main > header > span > img {
@@ -83,17 +83,17 @@ export const Container = styled.div`
 
 export const Button = styled.button`
   & {
-    ${({ google }) => google && googleButtonStyles}
+    ${({ $google }) => $google && googleButtonStyles}
     width: 100%;
     padding: 15px 25px;
     border-radius: ${themes.button.borderRadius};
     font-size: 1.6rem;
-    background-color: ${({ theme, google })=> google? themes.button.google[theme] : themes.button.color.blue};
+    background-color: ${({ theme, $google })=> $google? themes.button.google[theme] : themes.button.color.blue};
     cursor: pointer;
   }
   &:hover {
     filter: brightness(1.2);
-    ${({ google }) => google && css`box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);`};
+    ${({ $google }) => $google && css`box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);`};
   }
   &:disabled {
     filter: brightness(.6);
