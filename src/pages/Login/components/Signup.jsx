@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { auth } from "../../../contexts/firebase";
 import { authError } from "../../../functions";
+import SignInput from "../../../components/SignInput";
 
 export default function Signup() {
   const [loading, setLoading] = useState(null);
@@ -62,11 +63,38 @@ export default function Signup() {
 
   return (
     <>
-      <form onSubmit={handleRegister}>
-        <input ref={inputRef} id="name" type="text" placeholder="Nome completo" value={name} onChange={e => setName(e.target.value)} maxLength={50} required />
-        <input id="email" type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} maxLength={50} onFocus={() => setError(error.filter(e => e === 'Você precisa colocar seu nome completo.' || e === 'As senhas precisam ser iguais.'))} required />
-        <input id="password" type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} minLength={8} maxLength={24} required />
-        <input id="confirm_password" type="password" placeholder="Senha" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} minLength={8} maxLength={24} required />
+      <form onSubmit={handleRegister} style={{display: "flex", flexDirection: 'column', gap: '10px'}}>
+        <SignInput 
+          ref={inputRef}
+          type="text" 
+          placeholder="Nome completo" 
+          value={name} 
+          onChange={e => setName(e.target.value)} 
+          required 
+          user 
+        />
+        <SignInput 
+          type="email" 
+          placeholder="E-mail" 
+          value={email} 
+          onChange={e => setEmail(e.target.value)} 
+          onFocus={() => setError(error.filter(e => e === 'Você precisa colocar seu nome completo.' || e === 'As senhas precisam ser iguais.'))} 
+          required 
+        />
+        <SignInput 
+          type="password" 
+          placeholder="Senha" 
+          value={password} 
+          onChange={e => setPassword(e.target.value)} 
+          required 
+        />
+        <SignInput 
+          type="password" 
+          placeholder="Confirme a senha" 
+          value={confirmPassword} 
+          onChange={e => setConfirmPassword(e.target.value)} 
+          required 
+        />
         <button type="submit" disabled={loading || differentPasswords || !completeName}>{loading ? 'Cadastrando...' : 'Cadastrar'}</button>
       </form>
       {error && error.map((e,i) => <p key={i}>{e}</p>)}
