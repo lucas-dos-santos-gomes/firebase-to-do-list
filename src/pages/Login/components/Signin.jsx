@@ -5,7 +5,7 @@ import SignInput from "../../../components/SignInput";
 
 export default function Sigin() {
   const [loading, setLoading] = useState(null);
-  const [email, setEmail] = useState('lucas.gomes247@etec.sp.gov.br');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('1234567890');
   const [error, setError] = useState(null);
   const inputRef = useRef();
@@ -27,21 +27,18 @@ export default function Sigin() {
   };
 
   useEffect(() => {
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }, []);
 
   useEffect(() => {
-    error && inputRef.current.focus();
+    error && inputRef.current?.focus();
   }, [error]);
 
   return (
     <>
-      <form onSubmit={handleLogin}>
-        <SignInput />
-
-
-        <input ref={inputRef} id="email" type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} maxLength={50} required />
-        <input id="password" type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} minLength={8} maxLength={24} onFocus={handleError} required />
+      <form onSubmit={handleLogin} style={{display: "flex", flexDirection: 'column', gap: '10px'}}>
+        <SignInput ref={inputRef} type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} maxLength={50} required />
+        <input type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} minLength={8} maxLength={24} onFocus={handleError} required />
         <button type="submit" disabled={loading} >{loading ? 'Entrando...' : 'Entrar'}</button>
       </form>
       {error && <p>{error}</p>}

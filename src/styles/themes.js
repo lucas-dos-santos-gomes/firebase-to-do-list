@@ -3,7 +3,7 @@ export const themes = {
     color: {
       blue: '#4095EB'
     },
-    borderRadius: '15px', 
+    borderRadius: '50px', 
   },
   light: {
     color : {

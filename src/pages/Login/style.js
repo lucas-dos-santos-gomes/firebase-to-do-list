@@ -15,8 +15,9 @@ export const Container = styled.div`
   }
 
   & > main {
-    background-color: ${({ theme }) => themes[theme].color.primary};
     padding: 30px;
+    border-radius: 20px;
+    background-color: ${({ theme }) => themes[theme].color.primary};
   }
 
   & input::before {

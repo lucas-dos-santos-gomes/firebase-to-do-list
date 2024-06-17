@@ -1,17 +1,40 @@
 import styled from "styled-components";
 import { themes } from "../../styles/themes";
 
-export const Container = styled.div`
+export const Container = styled.label`
   & {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 15px;
+    border-radius: 50px;
+
+    font-size: 10px;
     background-color: ${({ theme }) => themes[theme].color.secondary};
+    
+    cursor: pointer;
   }
-  & > span {}
+  &.focus {
+    outline: 1.5px solid ${({ theme }) => themes[theme].fontColor.primary};
+  }
+  & > img {
+    width: 20px;
+  }
 `;
 
 export const Input = styled.input`
   & {
-
+    font-size: 2em;
+    background: none;
+    cursor: inherit;
+  }
+  &:focus {
+    border: none;
+    outline: none;
   }
   &:invalid {}
-  &::placeholder {}
+  &::placeholder {
+    color: ${({ theme }) => themes[theme].color.placeholder};
+  }
 `;
