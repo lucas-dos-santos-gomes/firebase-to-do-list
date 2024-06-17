@@ -1,12 +1,16 @@
 export const themes = {
-  color: {
-    blue: '#4095eb',
+  button: {
+    color: {
+      blue: '#4095EB'
+    },
+    borderRadius: '15px', 
   },
   light: {
     color : {
-      primary: '#AEAEAE',
-      secondary: '#FFF',
-      tertiary: '#F4F4F4',
+      primary: '#FFF',
+      secondary: '#F4F4F4',
+      tertiary: '#AEAEAE',
+      blue: '#6CAEF0',
     },
     fontColor : {
       primary: '#242424',
@@ -15,9 +19,10 @@ export const themes = {
   },
   dark: {
     color: {
-      primary: '#242424',
-      secondary: '#3A3A3A',
-      tertiary: '#595959',
+      primary: '#3A3A3A',
+      secondary: '#595959',
+      tertiary: '#242424',
+      blue: '#002E50',
     },
     fontColor: {
       primary: '#FFF',

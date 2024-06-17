@@ -3,7 +3,7 @@ import { auth, db } from '../../contexts/firebase';
 import { Link } from 'react-router-dom';
 import { deleteAllTasks } from '../../functions';
 
-function App() {
+export default function Tasks() {
   const [loading, setLoading] = useState(null);
   const [user, setUser] = useState(auth.currentUser);
   const [tasks, setTasks] = useState([]);
@@ -102,5 +102,3 @@ function App() {
     </>
   );
 }
-
-export default App;
