@@ -3,6 +3,7 @@ import { googleLogin } from "../../contexts/firebase";
 import { ThemeContext } from "../../contexts/theme";
 import Sigin from "./components/Signin";
 import Signup from "./components/Signup";
+import * as S from "./style";
 
 export default function Login() {
   const { theme } = useContext(ThemeContext);
@@ -19,7 +20,7 @@ export default function Login() {
 };
   
   return (
-    <>
+    <S.Container theme={theme}>
       <main>
         <img src={`/profile-${theme}.png`} alt="" />
         <h1>{component ? 'Entre com sua conta' : 'Cadastre-se'}</h1>
@@ -30,6 +31,6 @@ export default function Login() {
         <button onClick={handleGoogleSign}>Fazer Login com Google</button>
         {error && <p>{error}</p>}
       </main>
-    </>
+    </S.Container>
   );
 }

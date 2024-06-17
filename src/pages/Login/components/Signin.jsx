@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { auth } from "../../../contexts/firebase";
 import { authError } from "../../../functions";
+import SignInput from "../../../components/SignInput";
 
 export default function Sigin() {
   const [loading, setLoading] = useState(null);
@@ -36,6 +37,9 @@ export default function Sigin() {
   return (
     <>
       <form onSubmit={handleLogin}>
+        <SignInput />
+
+
         <input ref={inputRef} id="email" type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} maxLength={50} required />
         <input id="password" type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} minLength={8} maxLength={24} onFocus={handleError} required />
         <button type="submit" disabled={loading} >{loading ? 'Entrando...' : 'Entrar'}</button>
