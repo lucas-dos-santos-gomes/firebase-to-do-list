@@ -57,6 +57,13 @@ export const Container = styled.div`
   }
 
   & > main > section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 30px;
+  }
+
+  & > main > section > img {
+    width: 70px;
   }
 `;
