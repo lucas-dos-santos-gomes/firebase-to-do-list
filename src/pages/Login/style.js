@@ -43,13 +43,13 @@ export const Container = styled.div`
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    background-color: ${({ component, theme }) => component === 'Sign-up' ? themes[theme].color.secondary : themes[theme].color.primary};
+    background-color: ${({ component, theme }) => component === 'Sign-up' && themes[theme].color.secondary || component === 'Sign-in' && themes[theme].color.primary};
   }
   & > main > header > span:last-child {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
-    background-color: ${({ component, theme }) => component === 'Sign-in' ? themes[theme].color.secondary : themes[theme].color.primary};
+    background-color: ${({ component, theme }) => component === 'Sign-in' && themes[theme].color.secondary || component === 'Sign-up' && themes[theme].color.primary};
   }
 
   & > main > header > span > img {
