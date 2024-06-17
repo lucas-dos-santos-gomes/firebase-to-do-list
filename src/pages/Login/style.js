@@ -1,5 +1,12 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { themes } from "../../styles/themes";
+
+const googleButtonStyles = css`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const Container = styled.div`
   & {
@@ -58,6 +65,7 @@ export const Container = styled.div`
 
   & > main > section {
     display: flex;
+    gap: 10px;
     flex-direction: column;
     align-items: center;
     padding: 30px;
@@ -65,5 +73,32 @@ export const Container = styled.div`
 
   & > main > section > img {
     width: 70px;
+  }
+
+  & > main > section > h1 {
+    font-size: 2.4rem;
+    color: ${({ theme }) => themes[theme].fontColor.primary};
+  }
+`;
+
+export const Button = styled.button`
+  & {
+    ${({ google }) => google && googleButtonStyles}
+    width: 100%;
+    padding: 15px 25px;
+    border-radius: ${themes.button.borderRadius};
+    font-size: 1.6rem;
+    background-color: ${({ theme, google })=> google? themes.button.google[theme] : themes.button.color.blue};
+    cursor: pointer;
+  }
+  &:hover {
+    filter: brightness(1.2);
+    ${({ google }) => google && css`box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);`};
+  }
+  &:disabled {
+    filter: brightness(.6);
+  }
+  & > img {
+    width: 20px;
   }
 `;

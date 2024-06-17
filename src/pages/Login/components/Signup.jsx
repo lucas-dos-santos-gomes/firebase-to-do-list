@@ -1,9 +1,13 @@
+import * as PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
+
 import { auth } from "../../../contexts/firebase";
 import { authError } from "../../../functions";
-import SignInput from "../../../components/SignInput";
 
-export default function Signup() {
+import SignInput from "../../../components/SignInput";
+import * as S from "../style";
+
+export default function Signup({ children }) {
   const [loading, setLoading] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -95,9 +99,14 @@ export default function Signup() {
           onChange={e => setConfirmPassword(e.target.value)} 
           required 
         />
-        <button type="submit" disabled={loading || differentPasswords || !completeName}>{loading ? 'Cadastrando...' : 'Cadastrar'}</button>
+        <S.Button type="submit" disabled={loading || differentPasswords || !completeName}>{loading ? 'Cadastrando...' : 'Cadastrar'}</S.Button>
       </form>
+      {children}
       {error && error.map((e,i) => <p key={i}>{e}</p>)}
     </>
   );
 }
+
+Signup.propTypes = {
+  children: PropTypes.func.isRequired
+};

@@ -30,7 +30,7 @@ export default function Login() {
             <img className="Sign-in" src={`/svg/signin-${theme}.svg`} alt="Ícone entrar" />
             Entrar
           </span>
-          <span className="Sign-up" onClick={e => {setComponent(e.target.className), console.log(e)}}>
+          <span className="Sign-up" onClick={e => setComponent(e.target.className)}>
             <img className="Sign-up" src={`/svg/signup-${theme}.svg`} alt="Ícone cadastrar" />
             Cadastrar
           </span>
@@ -38,9 +38,19 @@ export default function Login() {
         <section>
           <img src={`/profile-${theme}.png`} alt="Imagem de perfil" />
           <h1>{component === 'Sign-in' ? 'Entre com sua conta' : 'Cadastre-se'}</h1>
-          {component === 'Sign-in' ? <Sigin /> : <Signup />}
-          <br />
-          <button onClick={handleGoogleSign}>Fazer Login com Google</button>
+          {component === 'Sign-in' ? 
+            (<Sigin>
+              <S.Button onClick={handleGoogleSign} theme={theme} google>
+                <img src="/svg/google.svg" alt="Ícone do Google" />
+                Fazer Login com Google
+              </S.Button>
+            </Sigin>) : 
+            (<Signup>
+              <S.Button onClick={handleGoogleSign} theme={theme} google>
+                <img src="/svg/google.svg" alt="Ícone do Google" />
+                Fazer Login com Google
+              </S.Button>
+            </Signup>)}
           {error && <p>{error}</p>}
         </section>
       </main>

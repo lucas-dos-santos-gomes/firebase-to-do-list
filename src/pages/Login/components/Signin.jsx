@@ -1,9 +1,13 @@
+import * as PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from "react";
+
 import { auth } from "../../../contexts/firebase";
 import { authError } from "../../../functions";
-import SignInput from "../../../components/SignInput";
 
-export default function Sigin() {
+import SignInput from "../../../components/SignInput";
+import * as S from "../style";
+
+export default function Sigin({ children }) {
   const [loading, setLoading] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -53,9 +57,14 @@ export default function Sigin() {
           onFocus={handleError} 
           required 
         />
-        <button type="submit" disabled={loading} >{loading ? 'Entrando...' : 'Entrar'}</button>
+        <S.Button type="submit" disabled={loading}>{loading ? 'Entrando...' : 'Entrar'}</S.Button>
       </form>
+      {children}
       {error && <p>{error}</p>}
     </>
   );
 }
+
+Sigin.propTypes = {
+  children: PropTypes.func.isRequired
+};

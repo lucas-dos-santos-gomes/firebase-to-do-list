@@ -25,7 +25,8 @@ export const Container = styled.label`
 
 export const Input = styled.input`
   & {
-    font-size: 2em;
+    width: 220px;
+    font-size: 1.4em;
     background: none;
     cursor: inherit;
   }

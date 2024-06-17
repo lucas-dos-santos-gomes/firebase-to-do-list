@@ -19,7 +19,11 @@
   padding: 0;
   box-sizing: border-box;
   border: none;
-  transition: background-color .5s linear, color .1s linear, background-image .5s linear;
+  transition: all .5s linear, color .1s linear, filter .2s linear;
+}
+
+*:disabled:hover {
+  cursor: not-allowed;
 }
 
 body {
