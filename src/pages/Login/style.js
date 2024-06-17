@@ -68,11 +68,11 @@ export const Container = styled.div`
     gap: 10px;
     flex-direction: column;
     align-items: center;
-    padding: 30px;
+    padding: 10px 30px 20px;
   }
 
   & > main > section > img {
-    width: 70px;
+    width: 60px;
   }
 
   & > main > section > h1 {
@@ -81,11 +81,23 @@ export const Container = styled.div`
   }
 `;
 
+export const Form = styled.form`
+  & {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  & ~ .error, & ~ ul .error {
+    color: #F00;
+    font-weight: bold;
+  }
+`;
+
 export const Button = styled.button`
   & {
     ${({ $google }) => $google && googleButtonStyles}
     width: 100%;
-    padding: 15px 25px;
+    padding: 12px 25px;
     border-radius: ${themes.button.borderRadius};
     font-size: 1.6rem;
     background-color: ${({ theme, $google })=> $google? themes.button.google[theme] : themes.button.color.blue};

@@ -67,7 +67,7 @@ export default function Signup({ children }) {
 
   return (
     <>
-      <form onSubmit={handleRegister} style={{display: "flex", flexDirection: 'column', gap: '10px'}}>
+      <S.Form onSubmit={handleRegister}>
         <SignInput 
           ref={inputRef}
           type="text" 
@@ -100,9 +100,10 @@ export default function Signup({ children }) {
           required 
         />
         <S.Button type="submit" disabled={loading || differentPasswords || !completeName}>{loading ? 'Cadastrando...' : 'Cadastrar'}</S.Button>
-      </form>
+      </S.Form>
+      <p>- ou -</p>
       {children}
-      {error && error.map((e,i) => <p key={i}>{e}</p>)}
+      {error.length < 1 || <ul>{error.map((e,i) => <li className="error" key={i}>{e}</li>)}</ul>}
     </>
   );
 }

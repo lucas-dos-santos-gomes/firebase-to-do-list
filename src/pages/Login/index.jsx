@@ -40,15 +40,15 @@ export default function Login() {
           <h1>{component === 'Sign-in' ? 'Entre com sua conta' : 'Cadastre-se'}</h1>
           {component === 'Sign-in' ? 
             (<Sigin>
-              <S.Button onClick={handleGoogleSign} theme={theme} $google>
+              <S.Button type="button" onClick={handleGoogleSign} theme={theme} $google>
                 <img src="/svg/google.svg" alt="Ícone do Google" />
                 Fazer Login com Google
               </S.Button>
             </Sigin>) : 
             (<Signup>
-              <S.Button onClick={handleGoogleSign} theme={theme} $google>
+              <S.Button type="button" onClick={handleGoogleSign} theme={theme} $google>
                 <img src="/svg/google.svg" alt="Ícone do Google" />
-                Fazer Login com Google
+                Criar uma conta com Google
               </S.Button>
             </Signup>)}
           {error && <p>{error}</p>}

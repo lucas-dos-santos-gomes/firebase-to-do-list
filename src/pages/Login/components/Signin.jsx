@@ -40,7 +40,7 @@ export default function Sigin({ children }) {
 
   return (
     <>
-      <form onSubmit={handleLogin} style={{display: "flex", flexDirection: 'column', gap: '10px'}}>
+      <S.Form onSubmit={handleLogin}>
         <SignInput 
           ref={inputRef} 
           type="email" 
@@ -58,9 +58,10 @@ export default function Sigin({ children }) {
           required 
         />
         <S.Button type="submit" disabled={loading}>{loading ? 'Entrando...' : 'Entrar'}</S.Button>
-      </form>
+      </S.Form>
+      <p>- ou -</p>
       {children}
-      {error && <p>{error}</p>}
+      {error && <p className='error'>{error}</p>}
     </>
   );
 }

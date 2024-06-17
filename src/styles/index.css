@@ -19,12 +19,14 @@
   padding: 0;
   box-sizing: border-box;
   border: none;
+  list-style: none;
   transition: background .5s linear, 
               background-color .5s linear, 
               background-image .5s linear, 
               color .1s linear, 
               outline .5s linear, 
-              filter .2s linear;
+              filter .2s linear,
+              box-shadow .2s linear;
 }
 
 *:disabled:hover {
