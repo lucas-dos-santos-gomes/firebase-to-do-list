@@ -15,15 +15,48 @@ export const Container = styled.div`
   }
 
   & > main {
-    padding: 30px;
-    border-radius: 20px;
+    border-radius: 30px;
     background-color: ${({ theme }) => themes[theme].color.primary};
   }
 
-  & input::before {
-    content: 'oi';
-    position: absolute;
-    width: 100px;
-    height: 12px;
+  & > main > header {
+    display: flex;
+    font-size: 1.6rem;
+    height: 50px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background: ${({ theme }) => `linear-gradient(to bottom, ${themes[theme].color.secondary} 50%, ${themes[theme].color.primary} 50%)`};
+  }
+  
+  & > main > header > span {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    color: ${({ theme }) => themes[theme].fontColor.primary};
+    cursor: pointer;
+  }
+  
+  & > main > header > span:first-child {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: ${({ component, theme }) => component === 'Sign-up' ? themes[theme].color.secondary : themes[theme].color.primary};
+  }
+  & > main > header > span:last-child {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    background-color: ${({ component, theme }) => component === 'Sign-in' ? themes[theme].color.secondary : themes[theme].color.primary};
+  }
+
+  & > main > header > span > img {
+    width: 20px;
+  }
+
+  & > main > section {
+    padding: 30px;
   }
 `;
