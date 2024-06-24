@@ -27,4 +27,40 @@ export const Menu = styled.div`
   &.clicked > span:last-child {
     transform: translateY(-10px) rotate(135deg);
   }
+  
+  &.clicked::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+  }
+`;
+
+export const Modal = styled.div`
+  /* display: none; */
+  position: absolute;
+  bottom: -30px;
+  right: 10px;
+  z-index: 12;
+
+  width: 280px;
+  padding-top: 20px;
+  border-radius: 10px;
+  
+  background-color: #FFF;
+  cursor: auto;
+
+  &::before {
+    border: 10px solid transparent;
+    border-bottom-color: #FFF;
+    content: "";
+    top: -20px;
+    right: 15px;
+    position: absolute;
+    z-index: 12;
+  }
 `;

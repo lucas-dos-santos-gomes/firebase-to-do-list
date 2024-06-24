@@ -67,7 +67,7 @@ export default function Tasks() {
     <>
       {user ? (
         <div>
-          <Header user={user} title="Lista de Tarefas" />
+          <Header user={user} title="Lista de Tarefas" path='/shopping' pathname='Lista de Compras' />
           <ul>
             {tasks.map((task) => (
               <li key={task.id}>
