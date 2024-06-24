@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { auth } from "../../contexts/firebase";
-import { FileInput } from "../../components/FileInput";
+import FileInput from "../../components/FileInput";
 
 export default function Profile() {
   const [loading, setLoading] = useState(null);

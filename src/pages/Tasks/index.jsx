@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
-import { auth, db } from '../../contexts/firebase';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import { auth, db } from '../../contexts/firebase';
 import { deleteAllTasks } from '../../functions';
+
+import Header from '../../components/Header/index';
 
 export default function Tasks() {
   const [loading, setLoading] = useState(null);
@@ -64,7 +67,7 @@ export default function Tasks() {
     <>
       {user ? (
         <div>
-          <h1>Lista de Tarefas</h1>
+          <Header user={user} title="Lista de Tarefas" />
           <ul>
             {tasks.map((task) => (
               <li key={task.id}>
@@ -87,11 +90,9 @@ export default function Tasks() {
             onChange={(e) => setNewTask(e.target.value)}
             placeholder="Adicionar tarefa"
           />
-          <button onClick={handleAddTask} disabled={loading}>{loading ? 'Adicionando...' : 'Adicionar'}</button>
+          <button type='button' onClick={handleAddTask} disabled={loading}>{loading ? 'Adicionando...' : 'Adicionar'}</button>
           <br /><br />
-          <button onClick={deleteAllTasks}>Deletar todas as tarefas</button>
-          <br />
-          <Link to="/profile">Perfil</Link>
+          <button type='button' onClick={deleteAllTasks}>Deletar todas as tarefas</button>
         </div>
       ) : (
         <>

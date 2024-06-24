@@ -4,7 +4,7 @@ import { auth } from '../../contexts/firebase';
 
 const storage = getStorage();
 
-export const FileInput = () => {
+export default function FileInput() {
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
 
