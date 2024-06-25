@@ -8,7 +8,7 @@ import SignInput from "../../../components/SignInput";
 import * as S from "../style";
 
 export default function Signup({ children }) {
-  const [loading, setLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,7 +28,7 @@ export default function Signup({ children }) {
   const handleRegister = async(e) => {
     e.preventDefault();
     try {
-      setLoading(true);
+      setIsLoading(true);
       await auth.createUserWithEmailAndPassword(email.trim(), password);
       const user = auth.currentUser;
       await user.updateProfile({ displayName: name.trim() });
@@ -37,7 +37,7 @@ export default function Signup({ children }) {
       resetInputs();
       inputRef.current.focus();
     } finally {
-      setLoading(null);
+      setIsLoading(null);
     }
   }
 
@@ -99,7 +99,7 @@ export default function Signup({ children }) {
           onChange={e => setConfirmPassword(e.target.value)} 
           required 
         />
-        <S.Button type="submit" disabled={loading || differentPasswords || !completeName}>{loading ? 'Cadastrando...' : 'Cadastrar'}</S.Button>
+        <S.Button type="submit" disabled={isLoading || differentPasswords || !completeName}>{isLoading ? 'Cadastrando...' : 'Cadastrar'}</S.Button>
       </S.Form>
       <p>- ou -</p>
       {children}

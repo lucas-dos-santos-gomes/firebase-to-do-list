@@ -8,7 +8,7 @@ import { deleteAllTasks } from '../../functions';
 import Header from '../../components/Header/index';
 
 export default function Tasks() {
-  const [loading, setLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
   const [user, setUser] = useState(auth.currentUser);
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
@@ -30,14 +30,14 @@ export default function Tasks() {
 
   const handleAddTask = async() => {
     if(user) {
-      setLoading(true);
+      setIsLoading(true);
       const tasksRef = db.collection(`users/${user.uid}/tasks`);
       await tasksRef.add({
         title: newTask,
         completed: false,
       });
       setNewTask('');
-      setLoading(null);
+      setIsLoading(null);
     }
   };
 
@@ -91,7 +91,7 @@ export default function Tasks() {
             onChange={(e) => setNewTask(e.target.value)}
             placeholder="Adicionar tarefa"
           />
-          <button type='button' onClick={handleAddTask} disabled={loading}>{loading ? 'Adicionando...' : 'Adicionar'}</button>
+          <button type='button' onClick={handleAddTask} disabled={isLoading}>{isLoading ? 'Adicionando...' : 'Adicionar'}</button>
           <br /><br />
           <button type='button' onClick={deleteAllTasks}>Deletar todas as tarefas</button>
         </div>

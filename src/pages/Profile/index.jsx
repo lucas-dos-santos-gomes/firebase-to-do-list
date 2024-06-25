@@ -3,13 +3,13 @@ import { auth } from "../../contexts/firebase";
 import FileInput from "../../components/FileInput";
 
 export default function Profile() {
-  const [loading, setLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
   const [user] = useState(auth.currentUser);
 
   const handleLogout = async() => {
-    setLoading(true);
+    setIsLoading(true);
     await auth.signOut();
-    setLoading(null);
+    setIsLoading(null);
   }
 
   return (
@@ -22,7 +22,7 @@ export default function Profile() {
       <h1>Seja bem vindo{user.displayName && ', ' + user.displayName}!</h1>
       <h2>Seu e-mail: {user.email}</h2>
       <p>Profile</p>
-      <button type="submit" onClick={handleLogout} disabled={loading}>{loading ? 'Deslogando...' : 'Deslogar'}</button>
+      <button type="submit" onClick={handleLogout} disabled={isLoading}>{isLoading ? 'Deslogando...' : 'Deslogar'}</button>
     </>
   );
 }

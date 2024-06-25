@@ -8,7 +8,7 @@ import SignInput from "../../../components/SignInput";
 import * as S from "../style";
 
 export default function Sigin({ children }) {
-  const [loading, setLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -19,14 +19,14 @@ export default function Sigin({ children }) {
   const handleLogin = async(e) => {
     e.preventDefault();
     try {
-      setLoading(true);
+      setIsLoading(true);
       await auth.signInWithEmailAndPassword(email.trim(), password);
     } catch(err) {
       setError(authError(err.message, true));
       setEmail('');
       setPassword('');
     } finally {
-      setLoading(null);
+      setIsLoading(null);
     }
   };
 
@@ -57,7 +57,7 @@ export default function Sigin({ children }) {
           onFocus={handleError} 
           required 
         />
-        <S.Button type="submit" disabled={loading}>{loading ? 'Entrando...' : 'Entrar'}</S.Button>
+        <S.Button type="submit" disabled={isLoading}>{isLoading ? 'Entrando...' : 'Entrar'}</S.Button>
       </S.Form>
       <p>- ou -</p>
       {children}
