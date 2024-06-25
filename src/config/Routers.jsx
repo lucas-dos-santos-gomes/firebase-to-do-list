@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 
 import { auth } from "../contexts/firebase";
 
-import Login from "../pages/Login";
 import Tasks from "../pages/Tasks";
 import Profile from "../pages/profile";
+import Login from "../pages/Login";
 
 export default function Routers() {
   const [user, setUser] = useState(false);
