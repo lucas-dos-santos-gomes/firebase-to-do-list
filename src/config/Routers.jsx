@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 import { auth } from "../contexts/firebase";
 
-import Login from "../pages/login";
-import Tasks from "../pages/tasks";
+import Login from "../pages/Login";
+import Tasks from "../pages/Tasks";
 import Profile from "../pages/profile";
 
 export default function Routers() {
