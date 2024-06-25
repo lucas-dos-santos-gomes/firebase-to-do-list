@@ -5,6 +5,7 @@ import { auth } from "../contexts/firebase";
 
 import Login from "../pages/Login";
 import Tasks from "../pages/Tasks";
+import Shopping from "../pages/Shopping";
 import Profile from "../pages/Profile";
 
 export default function Routers() {
@@ -19,6 +20,7 @@ export default function Routers() {
       <Routes>
         <Route exact path="/" element={user ? <Navigate to="tasks" /> : <Login />} />
         <Route path="/tasks" element={user ? <Tasks /> : user ?? <Navigate to="/" />} />
+        <Route path="/shopping" element={user ? <Shopping /> : user ?? <Navigate to="/" />} />
         <Route path="/profile" element={user ? <Profile /> : user ?? <Navigate to="/" />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 
 import { auth, db } from '../../contexts/firebase';
@@ -67,7 +68,7 @@ export default function Tasks() {
     <>
       {user ? (
         <div>
-          <Header user={user} title="Lista de Tarefas" path='/shopping' pathname='Lista de Compras' />
+          <Header title="Lista de Tarefas" path='/shopping' icon={faCartShopping} />
           <ul>
             {tasks.map((task) => (
               <li key={task.id}>
