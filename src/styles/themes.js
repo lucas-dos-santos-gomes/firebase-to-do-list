@@ -1,12 +1,21 @@
 export const themes = {
   button: {
     color: {
-      blue: '#4095EB'
+      blue: '#4095EB',
+      lightBlue: '#6CAEF0',
     },
     borderRadius: '50px',
     google: {
       light: '#D7D7D7',
       dark: '#242424',
+    },
+  },
+  input: {
+    light: {
+      background: '#DCDCDC',
+    },
+    dark: {
+      background: '#595959',
     },
   },
   light: {
