@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import * as S from './style';
 import { useContext } from 'react';
 import { ThemeContext } from "../../contexts/theme";
 
-export default function AddListItem({ value, onChange, placeholder, onClick, disabled }) {
+export default function AddListItem({ value, onChange, placeholder, onClick, isLoading }) {
   const { theme } = useContext(ThemeContext);
 
   return(
@@ -16,8 +16,8 @@ export default function AddListItem({ value, onChange, placeholder, onClick, dis
         placeholder={placeholder}
         theme={theme}
       />
-      <S.InputButton type='button' onClick={onClick} disabled={disabled}>
-        <FontAwesomeIcon icon={faPlus} size='xl' /> 
+      <S.InputButton type='button' onClick={onClick} disabled={isLoading}>
+        <FontAwesomeIcon icon={isLoading ? faSpinner : faPlus} size='xl' spinPulse={isLoading} /> 
       </S.InputButton>
     </S.Container>
   );

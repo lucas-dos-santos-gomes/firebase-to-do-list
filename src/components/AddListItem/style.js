@@ -29,4 +29,8 @@ export const InputButton = styled.button`
   background-color: ${themes.button.color.lightBlue};
   color: ${themes.dark.color.primary};
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+  }
 `;

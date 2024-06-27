@@ -1,4 +1,4 @@
-import { faCartShopping, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 
 import { auth, db } from '../../contexts/firebase';
@@ -7,6 +7,7 @@ import { deleteAllTasks } from '../../functions';
 import Header from '../../components/Header/index';
 import AddListItem from '../../components/AddListItem';
 import * as S from './style';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Tasks() {
   const [isLoading, setIsLoading] = useState(null);
@@ -72,26 +73,29 @@ export default function Tasks() {
         <S.Main>
           <AddListItem
             value={newTask} onChange={setNewTask} placeholder="Adicionar tarefa"
-            onClick={handleAddTask} disabled={isLoading}
+            onClick={handleAddTask} isLoading={isLoading}
           />
-          <ul>
-            {tasks.map((task) => (
-              <li key={task.id}>
-                <input
-                  type="checkbox"
-                  checked={task.completed}
-                  onChange={() => handleToggleCompleted(task)}
-                />
-                <span style={{ textDecoration: task.completed? 'line-through' : 'none' }}>
-                  {task.title}
-                </span>
-                {/* <button onClick={() => handleEditTask(task)}>Editar</button> */}
-                <button onClick={() => handleDeleteTask(task)}>Excluir</button>
-              </li>
-            ))}
-          </ul>
-          <br />
-          <button type='button' onClick={deleteAllTasks}>Deletar todas as tarefas</button>
+          <S.ListSection>
+            <ul>
+              {tasks.map((task) => (
+                <li key={task.id}>
+                  <input
+                    type="checkbox"
+                    checked={task.completed}
+                    onChange={() => handleToggleCompleted(task)}
+                  />
+                  <span style={{ textDecoration: task.completed? 'line-through' : 'none' }}>
+                    {task.title}
+                  </span>
+                  {/* <button onClick={() => handleEditTask(task)}>Editar</button> */}
+                  <button onClick={() => handleDeleteTask(task)}>Excluir</button>
+                </li>
+              ))}
+            </ul>
+          </S.ListSection>
+          <S.DeleteButton type='button' onClick={deleteAllTasks}>
+            <FontAwesomeIcon icon={faTrashCan} size='xl' />
+          </S.DeleteButton>
         </S.Main>
       </S.Container>
     </>
