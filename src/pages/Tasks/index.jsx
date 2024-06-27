@@ -30,7 +30,8 @@ export default function Tasks() {
     });
   }, []);
 
-  const handleAddTask = async() => {
+  const handleAddTask = async(e) => {
+    e.preventDefault();
     if(user) {
       setIsLoading(true);
       const tasksRef = db.collection(`users/${user.uid}/tasks`);
@@ -73,11 +74,11 @@ export default function Tasks() {
         <S.Main>
           <AddListItem
             value={newTask} onChange={setNewTask} placeholder="Adicionar tarefa"
-            onClick={handleAddTask} isLoading={isLoading}
+            onSubmit={handleAddTask} isLoading={isLoading}
           />
           <S.ListSection>
             <ul>
-              {tasks.map((task) => (
+              {!!tasks.length ? tasks.map((task) => (
                 <li key={task.id}>
                   <input
                     type="checkbox"
@@ -90,10 +91,10 @@ export default function Tasks() {
                   {/* <button onClick={() => handleEditTask(task)}>Editar</button> */}
                   <button onClick={() => handleDeleteTask(task)}>Excluir</button>
                 </li>
-              ))}
+              )) : (<li>Nenhum item localizado na lista</li>)}
             </ul>
           </S.ListSection>
-          <S.DeleteButton type='button' onClick={deleteAllTasks}>
+          <S.DeleteButton type='button' onClick={deleteAllTasks} visibility={!tasks.length}>
             <FontAwesomeIcon icon={faTrashCan} size='xl' />
           </S.DeleteButton>
         </S.Main>

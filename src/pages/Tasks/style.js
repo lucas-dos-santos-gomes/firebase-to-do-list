@@ -37,10 +37,12 @@ export const ListSection = styled.section`
 
 export const DeleteButton = styled.button`
   align-self: flex-end;
+
   width: 50px;
   height: 50px;
   border-radius: ${themes.button.borderRadius};
 
+  visibility: ${({ visibility }) => visibility && 'hidden'};
   background-color: #F00;
   cursor: pointer;
 

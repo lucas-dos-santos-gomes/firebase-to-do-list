@@ -4,11 +4,11 @@ import * as S from './style';
 import { useContext } from 'react';
 import { ThemeContext } from "../../contexts/theme";
 
-export default function AddListItem({ value, onChange, placeholder, onClick, isLoading }) {
+export default function AddListItem({ value, onChange, placeholder, onSubmit, isLoading }) {
   const { theme } = useContext(ThemeContext);
 
   return(
-    <S.Container>
+    <S.FormContainer onSubmit={onSubmit}>
       <S.Input
         type="text"
         value={value}
@@ -16,9 +16,9 @@ export default function AddListItem({ value, onChange, placeholder, onClick, isL
         placeholder={placeholder}
         theme={theme}
       />
-      <S.InputButton type='button' onClick={onClick} disabled={isLoading}>
+      <S.InputButton type='submit' disabled={isLoading}>
         <FontAwesomeIcon icon={isLoading ? faSpinner : faPlus} size='xl' spinPulse={isLoading} /> 
       </S.InputButton>
-    </S.Container>
+    </S.FormContainer>
   );
 }
