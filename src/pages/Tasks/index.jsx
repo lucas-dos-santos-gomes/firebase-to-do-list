@@ -1,5 +1,5 @@
-import { faCartShopping, faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { useState, useEffect } from 'react';
+import { faCartShopping, faCheck, faPlus, faTrash, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { useState, useEffect, useContext } from 'react';
 
 import { auth, db } from '../../contexts/firebase';
 import { deleteAllTasks } from '../../functions';
@@ -8,8 +8,10 @@ import Header from '../../components/Header/index';
 import AddListItem from '../../components/AddListItem';
 import * as S from './style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ThemeContext } from '../../contexts/theme';
 
 export default function Tasks() {
+  const { theme } = useContext(ThemeContext);
   const [isLoading, setIsLoading] = useState(null);
   const [user, setUser] = useState(auth.currentUser);
   const [tasks, setTasks] = useState([]);
@@ -76,25 +78,29 @@ export default function Tasks() {
             value={newTask} onChange={setNewTask} placeholder="Adicionar tarefa"
             onSubmit={handleAddTask} isLoading={isLoading}
           />
-          <S.ListSection>
+          <S.ListSection theme={theme}>
             <ul>
               {!!tasks.length ? tasks.map((task) => (
-                <li key={task.id}>
+                <S.ListItem key={task.id} theme={theme} completed={String(task.completed)}>
                   <input
+                    id={`checkbox-${task.id}`}
                     type="checkbox"
                     checked={task.completed}
                     onChange={() => handleToggleCompleted(task)}
                   />
-                  <span style={{ textDecoration: task.completed? 'line-through' : 'none' }}>
-                    {task.title}
-                  </span>
+                  <label htmlFor={`checkbox-${task.id}`}>
+                    {task.completed && <FontAwesomeIcon icon={faCheck} size='xl' />}
+                  </label>
+                  <input type='text' value={task.title} readOnly />
                   {/* <button onClick={() => handleEditTask(task)}>Editar</button> */}
-                  <button onClick={() => handleDeleteTask(task)}>Excluir</button>
-                </li>
+                  <button onClick={() => handleDeleteTask(task)}>
+                    <FontAwesomeIcon icon={faTrash} size='xl' />
+                  </button>
+                </S.ListItem>
               )) : (<li>Nenhum item localizado na lista</li>)}
             </ul>
           </S.ListSection>
-          <S.DeleteButton type='button' onClick={deleteAllTasks} visibility={!tasks.length}>
+          <S.DeleteButton title='Apagar tudo' type='button' onClick={deleteAllTasks} visibility={String(!tasks.length)}>
             <FontAwesomeIcon icon={faTrashCan} size='xl' />
           </S.DeleteButton>
         </S.Main>

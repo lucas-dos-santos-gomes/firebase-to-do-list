@@ -12,7 +12,7 @@ export const Header = styled.header`
   padding: 7px 20px;
   font-size: 1.4rem;
 
-  background-color: ${themes.dark.color.primary};
+  background-color: ${themes.dark.color.tertiary};
   color: ${themes.dark.fontColor.primary};
 
   & > a {

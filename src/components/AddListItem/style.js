@@ -10,11 +10,17 @@ export const FormContainer = styled.form`
 export const Input = styled.input`
   flex-grow: 1;
 
-  padding: 0 10px;
+  padding: 0 15px;
   border-radius: 5px;
 
-  font-size: 16px;
+  font-size: 18px;
   background-color: ${({ theme }) => themes.input[theme].background};
+  opacity: .4;
+  transition-duration: .2s;
+
+  &:focus {
+    opacity: 1;
+  }
 
   &::placeholder {
     color: ${({ theme }) => themes[theme].fontColor.placeholder};

@@ -6,7 +6,7 @@
 
   color-scheme: light dark;
   color: #ffffffde;
-  background-color: #242424;
+  background-color: #3A3A3A;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,6 +26,7 @@
               color .1s linear, 
               outline .5s linear, 
               filter .2s linear,
+              opacity .2s linear,
               box-shadow .2s linear;
 }
 
