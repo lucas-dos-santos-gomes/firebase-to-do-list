@@ -10,7 +10,9 @@ export const authError = (messageError, isLogin) => {
     return 'Houve um erro na autenticação.';
   } else if(messageError.includes('(auth/email-already-in-use)')) {
     return 'Esse endereço de E-mail já está cadastrado.';
+  } else if(messageError.includes('(auth/popup-closed-by-user)')) {
+    return 'Você fechou o pop-up antes de finalizar a operação.';
   } else {
     return 'Houve um problema na criação da conta. Tente novamente.';
-  }
-}
+  };
+};

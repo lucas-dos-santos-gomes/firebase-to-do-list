@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 
 import { googleLogin } from "../../contexts/firebase";
 import { ThemeContext } from "../../contexts/theme";
+import { authError } from "../../functions";
 
 import Sigin from "./components/Signin";
 import Signup from "./components/Signup";
@@ -18,7 +19,7 @@ export default function Login() {
       await googleLogin();
     } catch(err) {
       console.error(err.message);
-      setError(err.message);
+      setError(authError(err.message, false));
     }
   };
   
